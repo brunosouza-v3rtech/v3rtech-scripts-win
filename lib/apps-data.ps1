@@ -7,8 +7,10 @@
 # Website: https://v3rtech.com.br/
 # ==============================================================================
 
-$global:APP_MAP           = [ordered]@{}
-$global:APP_NAMES_ORDERED = [System.Collections.Generic.List[string]]::new()
+if (-not $global:APP_MAP -or $global:APP_MAP.Count -eq 0) {
+    $global:APP_MAP           = [ordered]@{}
+    $global:APP_NAMES_ORDERED = [System.Collections.Generic.List[string]]::new()
+}
 
 function Add-App {
     param(

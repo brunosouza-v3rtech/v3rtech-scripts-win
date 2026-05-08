@@ -11,7 +11,7 @@ Auto-confirm: `$env:AUTO_CONFIRM=1; .\script.ps1`
 ## Sequência de inicialização obrigatória em todo script
 
 ```powershell
-$BASE_DIR = Split-Path -Parent (Split-Path -Parent $PSCommandPath)
+$BASE_DIR = Split-Path -Parent $PSScriptRoot
 . "$BASE_DIR\core\env.ps1"
 . "$BASE_DIR\core\logging.ps1"
 . "$BASE_DIR\core\package-mgr.ps1"
@@ -53,6 +53,6 @@ Windows 11 Operating System
 
 1. **Idempotência**: Scripts podem ser re-executados sem efeitos colaterais
 2. **Abstração de gerenciador pacotes**: Função `Install-Package` abstrai Winget/Chocolatey
-3. **Configuração compartilhada**: `$env:APPDATA\v3rtech-scripts\config.json` para estado persistente
+3. **Configuração compartilhada**: `~/.config/v3rtech-scripts-win/config.json` para estado persistente
 4. **Logging padronizado**: Sempre usar `Log-*`, com arquivo + console colorido
 5. **Tratamento de erros**: Críticos com `Die`, não-críticos com `Log-Error` e continuação
