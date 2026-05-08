@@ -39,17 +39,21 @@ $global:AUTO_CONFIRM = ($env:AUTO_CONFIRM -eq "1")
 
 # ---------------------------------------------------------------------------
 # Configuração padrão (preenchida / sobrescrita por Load-Config)
+# Guard: only initialize CONFIG if not already set (idempotência no re-source)
 # ---------------------------------------------------------------------------
-$global:CONFIG = [ordered]@{
-    prefer_winget      = $true
-    install_categories = @()
-    last_update        = ""
+if (-not $global:CONFIG) {
+    $global:CONFIG = [ordered]@{
+        prefer_winget      = $true
+        install_categories = [System.Collections.Generic.List[string]]::new()
+        last_update        = ""
+    }
 }
 
 # ---------------------------------------------------------------------------
 # Funções de persistência
 # ---------------------------------------------------------------------------
 function Save-Config {
+    $global:CONFIG["last_update"] = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
     if (-not (Test-Path $global:CONFIG_DIR)) {
         New-Item -ItemType Directory -Path $global:CONFIG_DIR -Force | Out-Null
     }
@@ -60,7 +64,12 @@ function Load-Config {
     if (-not (Test-Path $global:CONFIG_FILE)) { return }
     $json = Get-Content $global:CONFIG_FILE -Raw | ConvertFrom-Json
     foreach ($key in $json.PSObject.Properties.Name) {
-        $global:CONFIG[$key] = $json.$key
+        $value = $json.$key
+        # Restore mutable list for array properties (JSON round-trip returns fixed-size Object[])
+        if ($value -is [System.Array]) {
+            $value = [System.Collections.Generic.List[string]]$value
+        }
+        $global:CONFIG[$key] = $value
     }
 }
 

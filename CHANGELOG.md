@@ -6,6 +6,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) | Versioning: [
 ## [Unreleased]
 
 ### Added
+- core/env.ps1: variáveis globais, config JSON persistente, flags de execução (DRY_RUN, VERBOSE, AUTO_CONFIRM)
 - Project scaffold: estrutura de diretórios completa
 - `.gitkeep` em diretórios vazios para preservar estrutura no git clone
 - `.gitignore` com padrões para logs, temporários, IDEs e Windows

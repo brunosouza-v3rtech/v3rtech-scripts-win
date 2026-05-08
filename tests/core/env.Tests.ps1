@@ -31,10 +31,21 @@ Describe "env.ps1 — variáveis globais" {
     }
 
     It "DRY_RUN é true quando env:DRY_RUN=1" {
-        $env:DRY_RUN = "1"
-        . (Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "core" "env.ps1")
-        $global:DRY_RUN | Should -Be $true
-        $env:DRY_RUN = "0"
+        try {
+            $env:DRY_RUN = "1"
+            . (Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "core" "env.ps1")
+            $global:DRY_RUN | Should -Be $true
+        } finally {
+            $env:DRY_RUN = "0"
+        }
+    }
+
+    It "não sobrescreve BASE_DIR pré-definido pelo chamador" {
+        $global:BASE_DIR = "/fake/path/set/by/caller"
+        . (Join-Path $script:root "core" "env.ps1")
+        $global:BASE_DIR | Should -Be "/fake/path/set/by/caller"
+        # Restore
+        $global:BASE_DIR = $script:root
     }
 }
 
