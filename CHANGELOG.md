@@ -19,3 +19,4 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) | Versioning: [
 - CLAUDE.md com guias de desenvolvimento e arquitetura
 - v3rtech-install.ps1: wizard CLI com menu, detecção de sistema e suporte a perfis JSON
 - profiles/: perfis desenvolvedor e escritorio em JSON
+- tests/Run-Tests.ps1: runner central de testes Pester com output NUnit XML
