@@ -54,9 +54,9 @@ Add-App -Active $true  -Category "internet" -Name "Brave Browser"    -Desc "Nave
 Add-App -Active $true  -Category "internet" -Name "Telegram"         -Desc "Mensageiro Telegram"          -WingetId "Telegram.TelegramDesktop"           -ChocoId "telegram"                   -Method "winget"
 Add-App -Active $true  -Category "internet" -Name "Discord"          -Desc "Comunicação Discord"          -WingetId "Discord.Discord"                   -ChocoId "discord"                    -Method "winget"
 Add-App -Active $true  -Category "internet" -Name "Zoom"             -Desc "Videoconferência Zoom"        -WingetId "Zoom.Zoom"                          -ChocoId "zoom"                       -Method "winget"
-Add-App -Active $true  -Category "internet"    -Name "WhatsApp"               -Desc "WhatsApp Desktop"                         -WingetId "9NKSQGP7F2NH"                          -ChocoId "whatsapp"                     -Method "winget"
-Add-App -Active $true  -Category "internet"    -Name "qBittorrent"            -Desc "Cliente torrent qBittorrent"              -WingetId "qBittorrent.qBittorrent"               -ChocoId "qbittorrent"                  -Method "winget"
-Add-App -Active $true  -Category "internet"    -Name "Stremio"                -Desc "Streaming Stremio"                        -WingetId "Stremio.Stremio"                       -ChocoId "stremio"                      -Method "winget"
+Add-App -Active $true  -Category "internet" -Name "WhatsApp"       -Desc "Mensageiro WhatsApp"      -WingetId "9NKSQGP7F2NH"                         -ChocoId "whatsapp"                   -Method "winget"
+Add-App -Active $true  -Category "internet" -Name "qBittorrent"    -Desc "Cliente torrent qBittorrent" -WingetId "qBittorrent.qBittorrent"             -ChocoId "qbittorrent"                -Method "winget"
+Add-App -Active $true  -Category "internet" -Name "Stremio"        -Desc "Streaming Stremio"        -WingetId "Stremio.Stremio"                      -ChocoId "stremio"                    -Method "winget"
 
 # =============================================================================
 # DEV
