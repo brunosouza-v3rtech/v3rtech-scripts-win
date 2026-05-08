@@ -1,0 +1,8 @@
+{
+  "name": "escritorio",
+  "description": "Setup para uso em escritório e produtividade",
+  "categories": ["internet", "office", "system"],
+  "apps_extra": [],
+  "winfeatures": [],
+  "system_tweaks": ["office-path"]
+}

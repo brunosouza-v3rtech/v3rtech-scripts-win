@@ -17,3 +17,5 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) | Versioning: [
 - `.gitignore` com padrões para logs, temporários, IDEs e Windows
 - README.md com pré-requisitos e instruções de instalação
 - CLAUDE.md com guias de desenvolvimento e arquitetura
+- v3rtech-install.ps1: wizard CLI com menu, detecção de sistema e suporte a perfis JSON
+- profiles/: perfis desenvolvedor e escritorio em JSON
