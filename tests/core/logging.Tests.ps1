@@ -48,8 +48,47 @@ Describe "Log-Debug" {
     }
 }
 
+Describe "Log-Step" {
+    It "usa cor Cyan" {
+        Mock Write-Host {}
+        Mock Add-Content {}
+        Log-Step "passo"
+        Should -Invoke Write-Host -Times 1 -ParameterFilter {
+            $Object -match "\[STEP\]" -and $ForegroundColor -eq "Cyan"
+        }
+    }
+}
+
+Describe "Log-Error" {
+    It "usa cor Red" {
+        Mock Write-Host {}
+        Mock Add-Content {}
+        Log-Error "erro"
+        Should -Invoke Write-Host -Times 1 -ParameterFilter {
+            $Object -match "\[ERROR\]" -and $ForegroundColor -eq "Red"
+        }
+    }
+}
+
+Describe "Log-Success" {
+    It "usa cor Green" {
+        Mock Write-Host {}
+        Mock Add-Content {}
+        Log-Success "sucesso"
+        Should -Invoke Write-Host -Times 1 -ParameterFilter {
+            $Object -match "\[SUCCESS\]" -and $ForegroundColor -eq "Green"
+        }
+    }
+}
+
 Describe "Die" {
     It "lança exceção com a mensagem" {
+        Mock Write-Log {}
         { Die "erro fatal" } | Should -Throw "erro fatal"
+    }
+    It "chama Log-Error antes de lançar a exceção" {
+        Mock Write-Log {}
+        try { Die "mensagem de erro" } catch {}
+        Should -Invoke Write-Log -Times 1 -ParameterFilter { $Level -eq "ERROR" }
     }
 }

@@ -16,7 +16,9 @@ function Write-Log {
     )
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Host "[$Level] $Message" -ForegroundColor $Color
-    Add-Content -Path $global:LOG_FILE -Value "[$timestamp] [$Level] $Message" -Encoding UTF8
+    if ($global:LOG_FILE) {
+        Add-Content -Path $global:LOG_FILE -Value "[$timestamp] [$Level] $Message" -Encoding UTF8
+    }
 }
 
 function Log-Step    { param([string]$M) Write-Log "STEP"    $M Cyan    }
