@@ -69,7 +69,7 @@ function Show-CategoryMenu {
         Write-Host "  [0] Voltar" -ForegroundColor DarkGray
         Write-Host ""
 
-        $opt = if ($global:AUTO_CONFIRM) { "A" } else { Read-Host "  > " }
+        $opt = if ($global:AUTO_CONFIRM) { "A" } else { (Read-Host "  > ").Trim() }
 
         switch ($opt.ToUpper()) {
             "1" { Invoke-Category "internet" }
@@ -108,11 +108,13 @@ function Show-ProfileMenu {
         Write-Host "  [0] Voltar" -ForegroundColor DarkGray
         Write-Host ""
 
-        $opt = if ($global:AUTO_CONFIRM) { "1" } else { Read-Host "  > " }
+        $opt = if ($global:AUTO_CONFIRM) { "1" } else { (Read-Host "  > ").Trim() }
 
         if ($opt -eq "0") { return }
 
-        $idx = [int]$opt - 1
+        $idx = $opt -as [int]
+        if ($null -eq $idx) { Log-Warn "Opcao invalida."; continue }
+        $idx = $idx - 1
         if ($idx -lt 0 -or $idx -ge $profiles.Count) {
             Log-Warn "Opcao invalida."
             continue
