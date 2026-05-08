@@ -2,6 +2,7 @@
 # ==============================================================================
 # Script: lib/install-apps-design.ps1
 # Versão: 1.1.0
+# Data: 2026-05-08
 # Objetivo: Instalar apps de Design (vetorial, raster, 3D)
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
 # Website: https://v3rtech.com.br/

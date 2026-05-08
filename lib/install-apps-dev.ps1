@@ -2,6 +2,7 @@
 # ==============================================================================
 # Script: lib/install-apps-dev.ps1
 # Versão: 1.1.0
+# Data: 2026-05-08
 # Objetivo: Instalar apps de Desenvolvimento (IDE, linguagens, containers)
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
 # Website: https://v3rtech.com.br/

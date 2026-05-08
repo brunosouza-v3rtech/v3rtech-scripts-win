@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # ==============================================================================
 # Script: lib/install-apps-internet.ps1
-# Versão: 1.0.0
+# Versão: 1.1.0
 # Objetivo: Instalar apps de Internet (navegadores, comunicação, nuvem)
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
 # Execução standalone: $env:DRY_RUN=1; .\lib\install-apps-internet.ps1

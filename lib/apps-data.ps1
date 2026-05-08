@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # ==============================================================================
 # Script: lib/apps-data.ps1
-# Versão: 1.0.0
+# Versão: 1.1.0
 # Objetivo: Banco de dados centralizado de aplicativos
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
 # Website: https://v3rtech.com.br/

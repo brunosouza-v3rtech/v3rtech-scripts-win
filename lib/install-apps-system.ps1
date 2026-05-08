@@ -2,6 +2,7 @@
 # ==============================================================================
 # Script: lib/install-apps-system.ps1
 # Versão: 1.1.0
+# Data: 2026-05-08
 # Objetivo: Instalar utilitários de sistema (compactador, busca, tweaks)
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
 # Website: https://v3rtech.com.br/
