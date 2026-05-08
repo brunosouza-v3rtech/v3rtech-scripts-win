@@ -9,12 +9,15 @@
 
 param(
     [Parameter(Mandatory)][string]$Path,
-    [int]$IntervalMinutes = 10
+    [int]$IntervalMinutes = 10,
+    [switch]$DryRun
 )
 
 $BASE_DIR = Split-Path -Parent $PSScriptRoot
 . (Join-Path $BASE_DIR "core" "env.ps1")
 . (Join-Path $BASE_DIR "core" "logging.ps1")
+
+$isDry = $DryRun -or $global:DRY_RUN
 
 if (-not (Test-Path $Path)) { Die "Pasta de wallpapers não encontrada: $Path" }
 
@@ -97,6 +100,11 @@ while ($true) {
 
     $names = ($images | ForEach-Object { $_.Name }) -join ", "
     Log-Info "Aplicando: $names"
+
+    if ($isDry) {
+        Log-Info "[DRY-RUN] Aplicaria: $names (intervalo: ${IntervalMinutes}min)"
+        break
+    }
 
     try {
         Set-CombinedWallpaper -ImagePaths ($images | ForEach-Object { $_.FullName })

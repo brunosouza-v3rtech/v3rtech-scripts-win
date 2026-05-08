@@ -52,9 +52,12 @@ foreach ($file in $files) {
         & magick $file.FullName -resize "${MaxWidth}x${MaxWidth}>" -quality $Quality $dest
         if ($LASTEXITCODE -ne 0) { throw "exit $LASTEXITCODE" }
 
+        $destInfo = Get-Item $dest -ErrorAction SilentlyContinue
+        if (-not $destInfo -or $destInfo.Length -eq 0) { throw "Arquivo destino ausente ou vazio: $dest" }
+
         $converted = $file.FullName + ".converted"
-        Rename-Item -Path $file.FullName -NewName ([System.IO.Path]::GetFileName($converted))
-        Remove-Item -Path $converted -Force
+        Rename-Item -Path $file.FullName -NewName ([System.IO.Path]::GetFileName($converted)) -ErrorAction Stop
+        Remove-Item -Path $converted -Force -ErrorAction Stop
         $ok++
     } catch {
         $msg = "ERRO: $($file.FullName) — $_"
