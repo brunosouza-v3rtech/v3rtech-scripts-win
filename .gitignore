@@ -1,9 +1,20 @@
-# Logs e config local
-.config/
+# Logs e config local gerada em runtime (fora do repo, em ~/.config/)
 *.log
+
+# Pester test results
+tests/TestResults.xml
 
 # PowerShell
 *.ps1xml
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporários
+*.bak
+*.tmp
+*.orig
 
 # Windows
 Thumbs.db
