@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 # ==============================================================================
 # Script: lib/install-apps-office.ps1
-# Versão: 1.0.0
+# Versão: 1.1.0
 # Data: 2026-05-08
 # Objetivo: Instalar apps de Escritório (suites, PDF, notes)
 # Autor: V3RTECH Tecnologia, Consultoria e Inovação
