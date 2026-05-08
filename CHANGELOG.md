@@ -10,6 +10,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) | Versioning: [
 - core/logging.ps1: logging colorizado (STEP/INFO/WARN/ERROR/SUCCESS/DEBUG) com saída simultânea para terminal e arquivo
 - core/package-mgr.ps1: abstração winget/choco/scoop com Install-App, Get-InstallOrder, Bootstrap automático
 - lib/detect-system.ps1: detecção de Windows version, GPU, arquitetura, sessão, privilégios de administrador
+- lib/apps-data.ps1: banco de dados de apps com Add-App/Get-AppsByCategory (categorias: internet, dev)
 - Project scaffold: estrutura de diretórios completa
 - `.gitkeep` em diretórios vazios para preservar estrutura no git clone
 - `.gitignore` com padrões para logs, temporários, IDEs e Windows
