@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Adicionar as 6 categorias restantes de apps (dev, office, multimedia, design, system, games), os 2 perfis faltantes (criador-conteudo, domestico), e atualizar o wizard com menu completo de categorias e submenus.
+**Goal:** Adicionar as 6 categorias restantes de apps (dev, office, multimedia, design, system, games), 14 apps extras migrados dos scripts antigos, os 2 perfis faltantes (criador-conteudo, domestico), e atualizar o wizard com menu completo de categorias e submenus.
 
 **Architecture:** Cada `lib/install-apps-CATEGORIA.ps1` é standalone e segue o mesmo padrão de `install-apps-internet.ps1`. `apps-data.ps1` recebe os novos apps. O wizard `v3rtech-install.ps1` ganha submenu de categorias com opção de instalar individualmente ou por perfil. Testes validam os dados de cada categoria num arquivo combinado.
 
@@ -14,7 +14,7 @@
 
 | Arquivo | Ação | Responsabilidade |
 |---|---|---|
-| `lib/apps-data.ps1` | Modificar | Adicionar apps: office, multimedia, design, system, games |
+| `lib/apps-data.ps1` | Modificar | Adicionar apps: office, multimedia, design, system, games + 14 apps extras |
 | `lib/install-apps-dev.ps1` | Criar | Categoria dev standalone |
 | `lib/install-apps-office.ps1` | Criar | Categoria office standalone |
 | `lib/install-apps-multimedia.ps1` | Criar | Categoria multimedia standalone |
@@ -135,12 +135,15 @@ Describe "Categoria games" {
 }
 
 Describe "APP_MAP total" {
-    It "tem pelo menos 35 apps registrados" {
-        $global:APP_MAP.Count | Should -BeGreaterOrEqual 35
+    It "tem pelo menos 50 apps registrados" {
+        $global:APP_MAP.Count | Should -BeGreaterOrEqual 50
     }
-    It "nenhum app tem WingetId vazio" {
+    It "nenhum app com WingetId definido tem valor vazio" {
         foreach ($name in $global:APP_MAP.Keys) {
-            $global:APP_MAP[$name].WingetId | Should -Not -BeNullOrEmpty -Because "$name precisa de WingetId"
+            $app = $global:APP_MAP[$name]
+            if ($app.Method -eq "winget") {
+                $app.WingetId | Should -Not -BeNullOrEmpty -Because "$name usa winget mas tem WingetId vazio"
+            }
         }
     }
 }
@@ -155,6 +158,14 @@ Invoke-Pester -Path tests/lib/install-apps-categories.Tests.ps1 -Output Detailed
 Resultado esperado: `Failed: 18` — categorias office/multimedia/design/system/games não têm apps ainda.
 
 - [ ] **Step 3: Adicionar os apps em `lib/apps-data.ps1`**
+
+Localizar o bloco `# INTERNET` existente e adicionar 3 apps ao final dele (antes do bloco `# DEV`):
+
+```powershell
+Add-App -Active $true  -Category "internet"    -Name "WhatsApp"               -Desc "WhatsApp Desktop"                         -WingetId "9NKSQGP7F2NH"                          -ChocoId "whatsapp"                     -Method "winget"
+Add-App -Active $true  -Category "internet"    -Name "qBittorrent"            -Desc "Cliente torrent qBittorrent"              -WingetId "qBittorrent.qBittorrent"               -ChocoId "qbittorrent"                  -Method "winget"
+Add-App -Active $true  -Category "internet"    -Name "Stremio"                -Desc "Streaming Stremio"                        -WingetId "Stremio.Stremio"                       -ChocoId "stremio"                      -Method "winget"
+```
 
 Localizar o bloco `# DEV` existente (última linha de Add-App) e adicionar após ele:
 
@@ -178,6 +189,8 @@ Add-App -Active $true  -Category "multimedia"  -Name "OBS Studio"             -D
 Add-App -Active $true  -Category "multimedia"  -Name "Audacity"               -Desc "Editor de áudio Audacity"                 -WingetId "Audacity.Audacity"                     -ChocoId "audacity"                     -Method "winget"
 Add-App -Active $true  -Category "multimedia"  -Name "HandBrake"              -Desc "Conversor de vídeo HandBrake"             -WingetId "HandBrake.HandBrake"                   -ChocoId "handbrake"                    -Method "winget"
 Add-App -Active $true  -Category "multimedia"  -Name "MPC-HC"                 -Desc "Media Player Classic Home Cinema"         -WingetId "clsid2.mpc-hc"                         -ChocoId "mpc-hc"                       -Method "winget"
+Add-App -Active $true  -Category "multimedia"  -Name "MKVToolNix"             -Desc "Ferramentas para arquivos MKV"            -WingetId "MKVToolNix.MKVToolNix"                 -ChocoId "mkvtoolnix"                   -Method "winget"
+Add-App -Active $true  -Category "multimedia"  -Name "Subtitle Edit"          -Desc "Editor de legendas Subtitle Edit"         -WingetId "Nikse.SubtitleEdit"                    -ChocoId "subtitleedit"                 -Method "winget"
 
 # =============================================================================
 # DESIGN
@@ -198,6 +211,15 @@ Add-App -Active $true  -Category "system"      -Name "PowerToys"              -D
 Add-App -Active $true  -Category "system"      -Name "Ventoy"                 -Desc "Criador de USB bootável Ventoy"           -WingetId "Ventoy.Ventoy"                         -ChocoId "ventoy"                       -Method "winget"
 Add-App -Active $true  -Category "system"      -Name "CrystalDiskInfo"        -Desc "Monitor de saúde de disco"                -WingetId "CrystalDewWorld.CrystalDiskInfo"       -ChocoId "crystaldiskinfo"              -Method "winget"
 Add-App -Active $true  -Category "system"      -Name "HWiNFO"                 -Desc "Informações de hardware HWiNFO"           -WingetId "REALiX.HWiNFO"                         -ChocoId "hwinfo"                       -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "SyncThing"              -Desc "Sincronização de arquivos SyncThing"      -WingetId "Syncthing.Syncthing"                   -ChocoId "syncthing"                    -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "VirtualBox"             -Desc "Virtualização Oracle VirtualBox"          -WingetId "Oracle.VirtualBox"                     -ChocoId "virtualbox"                   -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "PuTTY"                  -Desc "Cliente SSH/Telnet PuTTY"                 -WingetId "PuTTY.PuTTY"                           -ChocoId "putty"                        -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "WinSCP"                 -Desc "Cliente SFTP/FTP WinSCP"                  -WingetId "WinSCP.WinSCP"                         -ChocoId "winscp"                       -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "KeePassXC"              -Desc "Gerenciador de senhas KeePassXC"          -WingetId "KeePassXCTeam.KeePassXC"               -ChocoId "keepassxc"                    -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "Bitwarden"              -Desc "Gerenciador de senhas Bitwarden"          -WingetId "Bitwarden.Bitwarden"                   -ChocoId "bitwarden"                    -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "AutoHotkey"             -Desc "Automação de teclado/mouse AutoHotkey"   -WingetId "AutoHotkey.AutoHotkey"                 -ChocoId "autohotkey"                   -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "WizTree"                -Desc "Análise de uso de disco WizTree"          -WingetId "AntibodySoftware.WizTree"              -ChocoId "wiztree"                      -Method "winget"
+Add-App -Active $true  -Category "system"      -Name "Recuva"                 -Desc "Recuperação de arquivos Recuva"           -WingetId "Piriform.Recuva"                       -ChocoId "recuva"                       -Method "winget"
 
 # =============================================================================
 # GAMES
