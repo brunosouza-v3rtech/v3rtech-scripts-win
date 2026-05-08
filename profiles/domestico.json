@@ -1,0 +1,8 @@
+{
+  "name": "domestico",
+  "description": "Setup para uso doméstico e entretenimento",
+  "categories": ["internet", "multimedia", "games", "system"],
+  "apps_extra": [],
+  "winfeatures": [],
+  "system_tweaks": []
+}

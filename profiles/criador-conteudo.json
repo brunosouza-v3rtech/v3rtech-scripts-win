@@ -1,0 +1,8 @@
+{
+  "name": "criador-conteudo",
+  "description": "Setup para criação de conteúdo (vídeo, design, streaming)",
+  "categories": ["internet", "multimedia", "design", "system"],
+  "apps_extra": ["OBS Studio", "Audacity", "HandBrake"],
+  "winfeatures": [],
+  "system_tweaks": []
+}
