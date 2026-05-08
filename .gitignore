@@ -22,3 +22,6 @@ tests/TestResults.xml
 Thumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# SSH hosts (contém IPs e usuários pessoais)
+configs/ssh-hosts.ps1
