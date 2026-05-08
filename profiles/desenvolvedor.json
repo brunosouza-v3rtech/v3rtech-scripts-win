@@ -1,7 +1,7 @@
 {
   "name": "desenvolvedor",
   "description": "Setup completo para desenvolvimento de software",
-  "categories": ["internet", "dev", "system"],
+  "categories": ["internet", "dev", "ia", "system"],
   "apps_extra": ["Docker Desktop", "Windows Terminal"],
   "winfeatures": ["Microsoft-Windows-Subsystem-Linux", "VirtualMachinePlatform"],
   "system_tweaks": ["dev-path", "git-config"]

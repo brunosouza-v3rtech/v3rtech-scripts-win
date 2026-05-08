@@ -129,6 +129,15 @@ Add-App -Active $false -Category "system"      -Name "Recuva"                 -D
 Add-App -Active $true  -Category "system"      -Name "SyncBackPro"            -Desc "Backup e sincronização SyncBackPro"       -WingetId "2BrightSparks.SyncBackPro"             -ChocoId "syncbackpro"                  -Method "winget"
 
 # =============================================================================
+# IA
+# =============================================================================
+Add-App -Active $true  -Category "ia"         -Name "Claude Desktop"  -Desc "App desktop do Claude (Anthropic)"     -WingetId "Anthropic.Claude"          -ChocoId ""               -Method "winget"
+Add-App -Active $true  -Category "ia"         -Name "Claude Code"     -Desc "CLI de IA para desenvolvimento"        -WingetId "Anthropic.ClaudeCode"      -ChocoId ""               -Method "winget"
+Add-App -Active $true  -Category "ia"         -Name "Open Design"     -Desc "Ferramenta de design com IA"           -WingetId "OpenDesign.OpenDesign"     -ChocoId ""               -Method "winget"
+Add-App -Active $true  -Category "ia"         -Name "Whisper"         -Desc "Transcrição de áudio OpenAI Whisper"   -WingetId "Const-me.Whisper"          -ChocoId ""               -Method "winget"
+Add-App -Active $true  -Category "ia"         -Name "Codex"           -Desc "CLI de codificação OpenAI Codex"       -WingetId "OpenAI.Codex"              -ChocoId ""               -Method "winget"
+
+# =============================================================================
 # GAMES
 # =============================================================================
 Add-App -Active $true  -Category "games"       -Name "Steam"                  -Desc "Plataforma Steam"                         -WingetId "Valve.Steam"                           -ChocoId "steam"                        -Method "winget"

@@ -93,6 +93,20 @@ Describe "Categoria games" {
     }
 }
 
+Describe "Categoria ia" {
+    It "tem apps registrados" {
+        (Get-AppsByCategory "ia").Count | Should -BeGreaterThan 0
+    }
+    It "todos têm WingetId preenchido" {
+        Get-AppsByCategory "ia" | ForEach-Object {
+            $global:APP_MAP[$_].WingetId | Should -Not -BeNullOrEmpty
+        }
+    }
+    It "primeiro app é Claude Desktop" {
+        (Get-AppsByCategory "ia")[0] | Should -Be "Claude Desktop"
+    }
+}
+
 Describe "APP_MAP total" {
     It "tem pelo menos 50 apps registrados" {
         $global:APP_MAP.Count | Should -BeGreaterOrEqual 50

@@ -49,13 +49,14 @@ function Invoke-Category {
 
 function Show-CategoryMenu {
     $categories = @(
-        @{ Key="1"; Name="internet";    Label="Internet    (Chrome, Firefox, Telegram, Zoom)" }
+        @{ Key="1"; Name="internet";    Label="Internet    (Chrome, Firefox, Wavebox, Zen)" }
         @{ Key="2"; Name="dev";         Label="Dev         (VS Code, Git, Node.js, Docker)" }
-        @{ Key="3"; Name="office";      Label="Escritorio  (LibreOffice, Notion, PDF24)" }
-        @{ Key="4"; Name="multimedia";  Label="Multimidia  (VLC, Spotify, OBS, Audacity)" }
-        @{ Key="5"; Name="design";      Label="Design      (Figma, GIMP, Inkscape, Blender)" }
+        @{ Key="3"; Name="office";      Label="Escritorio  (LibreOffice, Notion, Sejda PDF)" }
+        @{ Key="4"; Name="multimedia";  Label="Multimidia  (VLC, OBS, HandBrake, FileBot)" }
+        @{ Key="5"; Name="design";      Label="Design      (Scribus, GIMP, Inkscape, Blender)" }
         @{ Key="6"; Name="system";      Label="Sistema     (7-Zip, PowerToys, Everything)" }
         @{ Key="7"; Name="games";       Label="Games       (Steam, Epic, GOG Galaxy)" }
+        @{ Key="8"; Name="ia";          Label="IA          (Claude Desktop, Claude Code, Whisper, Codex)" }
     )
 
     do {
@@ -79,6 +80,7 @@ function Show-CategoryMenu {
             "5" { Invoke-Category "design" }
             "6" { Invoke-Category "system" }
             "7" { Invoke-Category "games" }
+            "8" { Invoke-Category "ia" }
             "A" {
                 foreach ($c in $categories) { Invoke-Category $c.Name }
                 Log-Success "Todas as categorias concluidas."
@@ -166,7 +168,7 @@ do {
         "1" { Show-CategoryMenu }
         "2" { Show-ProfileMenu }
         "A" {
-            $all = @("internet","dev","office","multimedia","design","system","games")
+            $all = @("internet","dev","office","multimedia","design","system","games","ia")
             foreach ($c in $all) { Invoke-Category $c }
             Log-Success "Todas as categorias instaladas."
         }
