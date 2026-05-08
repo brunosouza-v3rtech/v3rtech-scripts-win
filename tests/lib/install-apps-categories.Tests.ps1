@@ -60,8 +60,8 @@ Describe "Categoria design" {
             $global:APP_MAP[$_].WingetId | Should -Not -BeNullOrEmpty
         }
     }
-    It "primeiro app é Figma" {
-        (Get-AppsByCategory "design")[0] | Should -Be "Figma"
+    It "primeiro app é Scribus" {
+        (Get-AppsByCategory "design")[0] | Should -Be "Scribus"
     }
 }
 

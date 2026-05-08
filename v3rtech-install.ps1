@@ -145,6 +145,7 @@ function Show-MainMenu {
     Write-Host ""
     Write-Host "  [1] Instalar apps por categoria" -ForegroundColor Cyan
     Write-Host "  [2] Instalar por perfil"         -ForegroundColor Cyan
+    Write-Host "  [A] Instalar tudo (todas as categorias)" -ForegroundColor Yellow
     Write-Host "  [0] Sair"                        -ForegroundColor DarkGray
     Write-Host ""
 }
@@ -161,10 +162,15 @@ do {
     Show-MainMenu
     $opt = if ($global:AUTO_CONFIRM) { "0" } else { Read-Host "  > " }
 
-    switch ($opt) {
+    switch ($opt.ToUpper()) {
         "1" { Show-CategoryMenu }
         "2" { Show-ProfileMenu }
+        "A" {
+            $all = @("internet","dev","office","multimedia","design","system","games")
+            foreach ($c in $all) { Invoke-Category $c }
+            Log-Success "Todas as categorias instaladas."
+        }
         "0" { Log-Info "Saindo."; break }
         default { Log-Warn "Opcao invalida." }
     }
-} while ($opt -ne "0")
+} while ($opt -notmatch "^[0]$")
