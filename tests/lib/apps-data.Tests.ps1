@@ -4,6 +4,9 @@ BeforeAll {
     . (Join-Path $script:root "core" "env.ps1")
     . (Join-Path $script:root "core" "logging.ps1")
     . (Join-Path $script:root "core" "package-mgr.ps1")
+    # Reset so the guard in apps-data.ps1 initializes a clean slate
+    $global:APP_MAP           = $null
+    $global:APP_NAMES_ORDERED = $null
     . (Join-Path $script:root "lib" "apps-data.ps1")
 }
 
