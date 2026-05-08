@@ -1,0 +1,11 @@
+# Logs e config local
+.config/
+*.log
+
+# PowerShell
+*.ps1xml
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
