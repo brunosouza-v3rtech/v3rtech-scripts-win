@@ -27,6 +27,7 @@ Describe "Install-ViaWinget — dry-run" {
 
 Describe "Install-ViaChoco — dry-run" {
     It "retorna true com ChocoId válido em dry-run" {
+        Mock Test-Choco { return $true }
         Mock Write-Host {}
         Mock Add-Content {}
         $result = Install-ViaChoco -ChocoId "googlechrome"
@@ -36,14 +37,29 @@ Describe "Install-ViaChoco — dry-run" {
         $result = Install-ViaChoco -ChocoId ""
         $result | Should -Be $false
     }
+    It "retorna false quando choco não está disponível" {
+        Mock Test-Choco { return $false }
+        Mock Write-Host {}
+        Mock Add-Content {}
+        $result = Install-ViaChoco -ChocoId "someapp"
+        $result | Should -Be $false
+    }
 }
 
 Describe "Install-ViaScoop — dry-run" {
     It "retorna true com ScoopId válido em dry-run" {
+        Mock Test-Scoop { return $true }
         Mock Write-Host {}
         Mock Add-Content {}
         $result = Install-ViaScoop -ScoopId "git"
         $result | Should -Be $true
+    }
+    It "retorna false quando scoop não está disponível" {
+        Mock Test-Scoop { return $false }
+        Mock Write-Host {}
+        Mock Add-Content {}
+        $result = Install-ViaScoop -ScoopId "someapp"
+        $result | Should -Be $false
     }
 }
 

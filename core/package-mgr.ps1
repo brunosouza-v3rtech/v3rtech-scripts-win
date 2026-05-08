@@ -14,7 +14,7 @@ function Test-Scoop  { return [bool](Get-Command scoop  -ErrorAction SilentlyCon
 
 function Bootstrap-Winget {
     if (Test-Winget) { return }
-    Log-Warn "winget não encontrado. Tentando registrar Microsoft.DesktopAppInstaller..."
+    Log-Info "winget não encontrado. Tentando registrar Microsoft.DesktopAppInstaller..."
     if ($global:DRY_RUN) { Log-Info "[DRY-RUN] Registraria DesktopAppInstaller"; return }
     Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
 }
@@ -54,6 +54,7 @@ function Install-ViaWinget {
 function Install-ViaChoco {
     param([string]$ChocoId)
     if (-not $ChocoId) { return $false }
+    if (-not (Test-Choco)) { Log-Warn "Chocolatey não disponível. Pulando."; return $false }
     Log-Info "choco: $ChocoId"
     if ($global:DRY_RUN) { Log-Info "[DRY-RUN] choco install $ChocoId -y"; return $true }
     choco install $ChocoId -y
@@ -63,6 +64,7 @@ function Install-ViaChoco {
 function Install-ViaScoop {
     param([string]$ScoopId, [string]$ScoopBucket = "")
     if (-not $ScoopId) { return $false }
+    if (-not (Test-Scoop)) { Log-Warn "Scoop não disponível. Pulando."; return $false }
     Log-Info "scoop: $ScoopId"
     if ($global:DRY_RUN) { Log-Info "[DRY-RUN] scoop install $ScoopId"; return $true }
     if ($ScoopBucket) { scoop bucket add $ScoopBucket 2>$null }
@@ -112,5 +114,5 @@ function Install-App {
     return $false
 }
 
-# Bootstrap winget no carregamento do módulo
-Bootstrap-Winget
+# Bootstrap winget no carregamento do módulo (somente no Windows)
+if ($IsWindows) { Bootstrap-Winget }
