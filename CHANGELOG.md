@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) | Versioning: [SemVer](https://semver.org/)
 
+## [1.2.0] - 2026-05-08
+
+### Added
+- utils/upall.ps1: atualiza winget + chocolatey + scoop em sequência
+- utils/img-convert.ps1: converte PNG/WEBP/TIFF/GIF/BMP para JPG com ImageMagick (recursivo, max 1920px)
+- utils/wallpaper-rotator.ps1: rotação automática de wallpaper multi-monitor via System.Drawing
+- utils/mkv-extract-subtitles.ps1: extrai faixa de legenda de MKV para SRT com mkvextract
+- utils/merge-pdfs.ps1: mescla PDFs de uma pasta em único arquivo com pdftk
+- utils/ssh-connect.ps1: gerenciador de conexões SSH com fix automático de permissões de chave
+- configs/ssh-hosts.example.ps1: template de hosts SSH (gitignored o real)
+- utils/video-rename.ps1: renomeia vídeos com FileBot (filmes, séries, anime, documentários, infantil)
+- utils/get-subtitles.ps1: baixa legendas PT/EN com FileBot suball
+- utils/transmission-clear.ps1: remove torrents Finished/Seeding/Idle do Transmission via CLI
+- tests/utils/utils.Tests.ps1: 18 testes de smoke para todos os utilitários
+
 ## [1.1.0] - 2026-05-08
 
 ### Added
